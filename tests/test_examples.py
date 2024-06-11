@@ -17,6 +17,7 @@ from pytest_lazy_fixtures import lf
         ("gamewrapper_tetris.py", lf("tetris_rom")),
         ("gamewrapper_mario.py", lf("supermarioland_rom")),
         ("gamewrapper_kirby.py", lf("kirby_rom")),
+        ("gamewrapper_links_awakening_dx.py", lf("links_awakening_dx_rom")),
     ]
 )
 def test_record_replay(gamewrapper, rom):

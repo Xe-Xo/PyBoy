@@ -112,6 +112,11 @@ def pokemon_pinball_rom(secrets):
     return locate_sha256(b"7672001d4710272009df6a41e3cbada65decd56e0eb2f185cb3d59c08d33ea0e")
 
 
+@pytest.fixture(scope="session")
+def links_awakening_dx_rom(secrets):
+    return locate_sha256(b"c95dd3d9cb798e86c28e3269554e458d434bf3277b96cadf5bc81cfacfb5ee60")
+
+
 tetris_game_area = np.array([
     [47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
     [47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
@@ -136,7 +141,7 @@ tetris_game_area = np.array([
 
 
 @pytest.fixture(autouse=True)
-def doctest_fixtures(doctest_namespace, default_rom, default_rom_cgb, supermarioland_rom, pokemon_pinball_rom):
+def doctest_fixtures(doctest_namespace, default_rom, default_rom_cgb, supermarioland_rom, pokemon_pinball_rom, links_awakening_dx_rom):
     pyboy = PyBoy(default_rom, window="null", symbols="extras/default_rom/default_rom.sym")
     pyboy_cgb = PyBoy(default_rom_cgb, window="null", symbols="extras/default_rom/default_rom_cgb.sym")
 
@@ -163,6 +168,7 @@ def doctest_fixtures(doctest_namespace, default_rom, default_rom_cgb, supermario
         doctest_namespace["newline"] = "\n"
         doctest_namespace["supermarioland_rom"] = supermarioland_rom
         doctest_namespace["pokemon_pinball_rom"] = pokemon_pinball_rom
+        doctest_namespace["links_awakening_dx_rom"] = links_awakening_dx_rom
 
         yield None
 
